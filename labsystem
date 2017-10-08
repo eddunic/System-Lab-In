@@ -15,7 +15,6 @@ struct registro{ /*Estrutura para guardar os dados do usuário*/
 
 int main(void) {
     setlocale(LC_ALL,"");
-    system("mode con:cols = 200 lines = 30");
     menu_principal();
     return 0;
 }
