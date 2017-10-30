@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <windows.h>
+#include <string.h>
 
 //Declaração de funções
 void menu_principal();
@@ -14,25 +16,17 @@ struct registro{ /*Estrutura para guardar os dados do usuário*/
     }atual[1000];
 
 int main(void) {
+    system("date/t");
+    system("time/t");
     setlocale(LC_ALL,"");
     menu_principal();
     return 0;
 }
 
 void menu_principal(){
-    int i;
+    int i;//Switch case
     do{
-
         puts("\t\t\t\tSISTEMA DE ACESSO AO LABORATÓRIO DE INFORMÁTICA");
-        puts("\n");
-        printf("                xxxxxx     xxx     xxx     xxxxxx     xxxxxxxxxxx     xxxxxxxx       xx          xx    \n"
-               "                xx          xxx  xxx       xx             xxx         xx            xx xx      xx xx   \n"
-               "                xxxxxx        xxxx         xxxxxx         xxx         xxxxxx        xx   xx   xx  xx   \n"
-               "                    xx         xx              xx         xxx         xx            xx    xx xx   xx   \n"
-               "                xxxxxx         xx          xxxxxx         xxx         xxxxxxxx      xx      xx    xx   \n"
-
-                );
-        puts("\n");
         puts("\n");
         puts("\t\t\t\t\t\tMENU PRINCIPAL\n");
         printf("\t\t\t\t\t1 - CADASTRO DE CONTA\n"
@@ -61,7 +55,7 @@ void menu_principal(){
 void menu_cadastro(int i) {
     char c; //Variável para converter char
     int v = 0, j; //Contador para struct; Para exibir consulta
-    struct registro atual[1000];
+    struct registro atual[1000], *ptr;
     inicio:
     system("cls");
     do{
@@ -79,8 +73,7 @@ void menu_cadastro(int i) {
         scanf("%i", &i);
         switch(i) {
             case 1:
-                inclui:
-                do{
+                    do{
                     setbuf(stdin, NULL); //Limpa o buffer
                     system("cls");
                     printf("\t\tSISTEMA DE ACESSO AO LABORATÓRIO DE INFORMÁTICA");
@@ -89,7 +82,6 @@ void menu_cadastro(int i) {
                     puts("\n");
                     printf("\t\t\tConta : ");
                     gets(atual[v].conta);
-                    verifica_conta(0);
                     printf("%s","\t\t\tSenha: ");
                 do{
                     c = getch();
@@ -122,7 +114,7 @@ void menu_cadastro(int i) {
                     }else{
                         if((c == 'N')||(c == 'n')){
                            system("cls");
-                           atual[v].conta[v] = "";       //Zera posição
+                           atual[v].conta[v] = ""; //Zera posição
                            atual[v].senha[v] = "";
                            atual[v].usuario[v] = "";
                            goto inicio; //Volta para essa etapa
@@ -166,7 +158,6 @@ void menu_cadastro(int i) {
 }
 
 void verifica_conta() {
-
 
 
 
