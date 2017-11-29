@@ -1,54 +1,54 @@
 /**
-                           InÌcio do Projeto: 23/09/2017
-                         CONTROLE DE ACESSO AO LABORAT”RIO
-              Projeto de LPED- LÛgica de Programac„o e Estrutura de Dados
+                           In√≠cio do Projeto: 23/09/2017
+                         CONTROLE DE ACESSO AO LABORAT√ìRIO
+              Projeto de LPED- L√≥gica de Programac√£o e Estrutura de Dados
                                      ANO: 2017
-        Componentes: Bianca ¬ngelo, Daniela Ferreira, Eduardo Neves e Marcos Felipe.
+        Componentes: Bianca √Çngelo, Daniela Ferreira, Eduardo Neves e Marcos Felipe.
 */
 
 /**BIBLIOTECAS*/
-#include <stdio.h> /**FunÁıes de entrada e saÌda*/
-#include <stdlib.h> ///Padr„o
+#include <stdio.h> /**Fun√ß√µes de entrada e sa√≠da*/
+#include <stdlib.h> ///Padr√£o
 #include <windows.h> ///Hora e gotoxy
-#include <ctype.h> ///ManipulaÁ„o de caracteres
-#include <string.h> ///ManipulaÁ„o de strings
+#include <ctype.h> ///Manipula√ß√£o de caracteres
+#include <string.h> ///Manipula√ß√£o de strings
 #include <conio.h>
 
 #define QTDE 50  ///Caracteres de cada string do cadastro
 
-/**ProtÛtipos das funÁıes*/
-void principio(); /**Opta por administrador ou usu·rio comum*/
+/**Prot√≥tipos das fun√ß√µes*/
+void principio(); /**Opta por administrador ou usu√°rio comum*/
 void opcoes_principio();
 void senha_admin(); ///Janela que pede cadastro de senha do administrador
 void login_admin();
 void edite_sen_admin(); ///Altera senha do administrador
 void login_user();
-void menu_user(); ///Menu de usu·rio comum
+void menu_user(); ///Menu de usu√°rio comum
 void opcoes_menu_user();
 void menu_principal(); /**MENU: Tela inicial - Tela 1.0*/
 void opcoes_menu_principal();
 void menu_cadastro(); /**MENU: Tela Cadastro - Tela 1.1*/
-void opcoes_menu_cadastro(); /**FunÁ„o p/ opÁ„o selecionada na TELA 1.0*/
-void inclusao(); /**Inclus„o de Conta*/
-int verifica_conta(); /**Caso tenha contas iguais na inclus„o*/
-int verifica_usuario(); /**Caso tenha usu·rios iguais na inclus„o*/
+void opcoes_menu_cadastro(); /**Fun√ß√£o p/ op√ß√£o selecionada na TELA 1.0*/
+void inclusao(); /**Inclus√£o de Conta*/
+int verifica_conta(); /**Caso tenha contas iguais na inclus√£o*/
+int verifica_usuario(); /**Caso tenha usu√°rios iguais na inclus√£o*/
 void delay(int); ///Desacelera o tempo para imprimir
 void consulta(); /**Mostra contas existentes*/
 void exclusao(); /**Exclui conta**/
 void alteracao(); /**Altera dados*/
-void menu_entrada_saida(); /**MENU: Tela Entrada e SaÌda*/
+void menu_entrada_saida(); /**MENU: Tela Entrada e Sa√≠da*/
 void entrada_saida();
-void menu_estatisticas_acesso(); /**MENU: Tela EstatÌsticas - Tela 1.3*/
+void menu_estatisticas_acesso(); /**MENU: Tela Estat√≠sticas - Tela 1.3*/
 void registros_uso();
 void exclui_entrada_saida();
 void meus_dados();
-///ProtÛtipos das FunÁıes Moldes dos MENUS
+///Prot√≥tipos das Fun√ß√µes Moldes dos MENUS
 void abertura_carregamento(); /**Tela de entrada*/
 void molde_tempo(); //Para data e hora
 void molde1(); //Tela 0.0 (Menor)
 void molde2(); //Tela 1.0
 void molde3(); //Menu inclusao
-void linha_cima_dialogo(int xi, int l, int q, int xf); //Molde caixa de di·logo
+void linha_cima_dialogo(int xi, int l, int q, int xf); //Molde caixa de di√°logo
 void linha_baixo_dialogo(int xi, int l, int q, int xf);
 void laterais_dialogo(int xi, int l, int q, int xf);
 void data_hora(); //Falta atualizar!!
@@ -63,7 +63,7 @@ void limpa_parte_tela(int xi, int li, int q, int r);
 void preenche_lateral_linha_fina (int c, int l, int q);
 void preenche_linha_fina_horizontal(int l, int c, int q);
 
-void gotoxy(int x, int y) { ///FunÁ„o para posicionar o cursor
+void gotoxy(int x, int y) { ///Fun√ß√£o para posicionar o cursor
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), (COORD){x-1,y-1});
 }
 
@@ -78,14 +78,14 @@ void SetColor(char ForgC) { ///Altera cor de caractere
     return;
 }
 
-typedef struct{ /**Estrutura para guardar os dados do usu·rio*/
+typedef struct{ /**Estrutura para guardar os dados do usu√°rio*/
     char conta[QTDE], senha[QTDE], usuario[QTDE];
     char finalidade[QTDE];
     int hora_entrada, hora_saida, min_entrada, min_saida;
     int dia, mes, ano;
     }atual;
 
-/**Vari·veis Globais*/
+/**Vari√°veis Globais*/
 char arquivo[] = "Contas.txt";
 FILE *arq_inclusao;
 
@@ -95,9 +95,9 @@ char pass[] = "Senha_admin.txt";
 
 FILE *presenca;
 char present[] = "Presenca_de_senha.txt";
-char senhaounao; //Auxilia na verificaÁ„o para voltar ao menu anterior correspondente ao tipo de usu·rio
+char senhaounao; //Auxilia na verifica√ß√£o para voltar ao menu anterior correspondente ao tipo de usu√°rio
 
-//Registros de Entrada e SaÌda
+//Registros de Entrada e Sa√≠da
 FILE *registro_uso;
 char temps[] = "Registros_de_entrada_e_saida.txt";
 
@@ -107,7 +107,7 @@ char nome_da_conta[QTDE];
 int main(void) {
     SetConsoleTitle("System Lab In (SLIN)");
     system("COLOR F0");
-    //abertura_carregamento();
+    abertura_carregamento();
     principio();
     return 0;
 }
@@ -137,7 +137,7 @@ void abertura_carregamento() {
     printf("%c", 188);
 
 	gotoxy(x1, y1); /**Posiciona em:*/
-	for(a = 1; a <= 72; a++) { /**80 chega atÈ o final os sÌmbolos, se diminuir o de cima e o de baixo n„o completam*/
+	for(a = 1; a <= 72; a++) { /**80 chega at√© o final os s√≠mbolos, se diminuir o de cima e o de baixo n√£o completam*/
 		if(a - 1 < 20) { /** <26*/
 			gotoxy(x1, y1);
 			if(a - 1 != 18) {
@@ -197,7 +197,7 @@ void abertura_carregamento() {
             printf("%c", 205);
         }
 
-        /**TÌtulo*/
+        /**T√≠tulo*/
         if(a - 1 < 13) { /** <26*/
 			gotoxy(x11, y3);
 			if(a - 1 != 18) {
@@ -356,17 +356,17 @@ void senha_admin() {
     printf("Digite uma senha para o root: ");
     do{
         c = getch(); //Pausa para receber
-        if(isprint(c)) { //Analisa se o valor da vari·vel c È imprimÌvel
+        if(isprint(c)) { //Analisa se o valor da vari√°vel c √© imprim√≠vel
             password[i] = c;
             i++;
             printf("*");
         }else
-            if(c == 8 && i) {   //8 È o caractere BackSpace na tabela ASCII
+            if(c == 8 && i) {   //8 √© o caractere BackSpace na tabela ASCII
                 password[i] = '\0';
                 i--;
-                printf("\b \b");    //Apaga o caractere backspace digitado,  && i analisa se i È diferente de 0
+                printf("\b \b");    //Apaga o caractere backspace digitado,  && i analisa se i √© diferente de 0
             }
-    }while(c != 13);             //13 È o valor de ENTER na tabela ASCII
+    }while(c != 13);             //13 √© o valor de ENTER na tabela ASCII
     password[i] = '\0';
     if(password[0] <= '0') {
         gotoxy(40, 5);
@@ -389,17 +389,17 @@ void senha_admin() {
     printf("Confirme a senha: ");
     do{
         c = getch(); //Pausa para receber
-        if(isprint(c)) { //Analisa se o valor da vari·vel c È imprimÌvel
+        if(isprint(c)) { //Analisa se o valor da vari√°vel c √© imprim√≠vel
             pass_copy[i] = c;
             i++;
             printf("*");
         }else
-            if(c == 8 && i) {   //8 È o caractere BackSpace na tabela ASCII
+            if(c == 8 && i) {   //8 √© o caractere BackSpace na tabela ASCII
                 pass_copy[i] = '\0';
                 i--;
-                printf("\b \b");    //Apaga o caractere backspace digitado,  && i analisa se i È diferente de 0
+                printf("\b \b");    //Apaga o caractere backspace digitado,  && i analisa se i √© diferente de 0
             }
-    }while(c != 13);             //13 È o valor de ENTER na tabela ASCII
+    }while(c != 13);             //13 √© o valor de ENTER na tabela ASCII
     pass_copy[i] = '\0';
     if(pass_copy[0] <= '0') {
         SetColor(4);
@@ -462,17 +462,17 @@ void login_admin() {
     gotoxy(24, 17);
     do{
         c = getch(); //Pausa para receber
-        if(isprint(c)) { //Analisa se o valor da vari·vel c È imprimivel
+        if(isprint(c)) { //Analisa se o valor da vari√°vel c √© imprimivel
             key[i] = c;
             i++;
             printf("*");
         }else
-            if(c == 8 && i) {   //8 È o caractere BackSpace na tabela ASCII
+            if(c == 8 && i) {   //8 √© o caractere BackSpace na tabela ASCII
                 key[i] = '\0';
                 i--;
-                printf("\b \b");    //Apaga o caractere backspace digitado,  && i analisa se i È diferente de 0
+                printf("\b \b");    //Apaga o caractere backspace digitado,  && i analisa se i √© diferente de 0
             }
-    }while(c != 13);             //13 È o valor de ENTER na tabela ASCII
+    }while(c != 13);             //13 √© o valor de ENTER na tabela ASCII
     key[i] = '\0';
     senha = fopen(pass, "r");
     rewind(senha);
@@ -686,17 +686,17 @@ void login_user() {
             printf("Digite sua senha: ");
             do{
                 c = getch(); //Pausa para receber
-                if(isprint(c)) { //Analisa se o valor da vari·vel c È imprimivel
+                if(isprint(c)) { //Analisa se o valor da vari√°vel c √© imprimivel
                     pass[i] = c;
                     i++;
                     printf("*");
                 }else
-                    if( c == 8 && i) {   //8 È o caractere BackSpace na tabela ASCII
+                    if( c == 8 && i) {   //8 √© o caractere BackSpace na tabela ASCII
                         pass[i] = '\0';
                         i--;
-                        printf("\b \b");    //Apaga o caractere backspace digitado,  && i analisa se i È diferente de 0
+                        printf("\b \b");    //Apaga o caractere backspace digitado,  && i analisa se i √© diferente de 0
                     }
-            }while(c != 13);             //13 È o valor de ENTER na tabela ASCII
+            }while(c != 13);             //13 √© o valor de ENTER na tabela ASCII
             pass[i] = '\0';
             if(strcmp(pass, reg.senha) == 0) {
                 senhaounao = 0;
@@ -998,12 +998,12 @@ void opcoes_menu_cadastro() {
 
 void inclusao() {
     atual REG;
-    int verific; //Verificador de conta e usu·rio
+    int verific; //Verificador de conta e usu√°rio
     char c; //Formulador de asterisco
-    int i = 0; //Contador para geraÁ„o de asteriscos
+    int i = 0; //Contador para gera√ß√£o de asteriscos
     int posicao = 0;
     char resp;
-    char count[QTDE], user[QTDE]; //Para armazenar ˙ltima conta; ⁄ltimo usu·rio
+    char count[QTDE], user[QTDE]; //Para armazenar √∫ltima conta; √öltimo usu√°rio
     do{
         volta_conta:
         fflush(arq_inclusao);
@@ -1046,17 +1046,17 @@ void inclusao() {
         printf("Senha: ");
         do{
             c = getch(); //Pausa para receber
-            if(isprint(c)) { //Analisa se o valor da vari·vel c È imprimivel
+            if(isprint(c)) { //Analisa se o valor da vari√°vel c √© imprimivel
                 REG.senha[i] = c;
                 i++;
                 printf("*");
             }else
-                if(c == 8 && i) {   //8 È o caractere BackSpace na tabela ASCII
+                if(c == 8 && i) {   //8 √© o caractere BackSpace na tabela ASCII
                     REG.senha[i] = '\0';
                     i--;
-                    printf("\b \b");    //Apaga o caractere backspace digitado,  && i analisa se i È diferente de 0
+                    printf("\b \b");    //Apaga o caractere backspace digitado,  && i analisa se i √© diferente de 0
                 }
-        }while(c != 13);             //13 È o valor de ENTER na tabela ASCII
+        }while(c != 13);             //13 √© o valor de ENTER na tabela ASCII
         REG.senha[i] = '\0';
         if(REG.senha[0] <= '0') {
             gotoxy(29, 16);
@@ -1102,7 +1102,7 @@ void inclusao() {
             getch(); //Pausa
             system("cls");
         }else{
-            REG.conta[posicao] = ""; //Zera posiÁ„o
+            REG.conta[posicao] = ""; //Zera posi√ß√£o
             REG.senha[posicao] = "";
             REG.usuario[posicao] = "";
             fclose(arq_inclusao); //Fecha o arquivo
@@ -1172,7 +1172,7 @@ void consulta() {
     int x = 0, i, i2 = 0;
     char pass[QTDE], c;
     computador();
-    //caixa tÌtulo contas
+    //caixa t√≠tulo contas
     gotoxy(28, 5); //cima
     preenche_linha_superior(29, 5, 16, 46);
     gotoxy(28, 7); // baixo
@@ -1252,7 +1252,7 @@ void exclusao() {
     } else{
     preenche_linha_superior(16, 7, 43, 59);
     gotoxy(21, 8);
-    printf("Informe a conta que deseja excluir"); //Solicita a conta a ser excluÌda
+    printf("Informe a conta que deseja excluir"); //Solicita a conta a ser exclu√≠da
     preenche_linha_inferior (16, 9, 43, 59);
     preenche_laterais(16, 8, 1, 59);
     gotoxy(38, 10);
@@ -1267,9 +1267,9 @@ void exclusao() {
     gotoxy(21, 14);
     printf("Nome: ");
     setbuf(stdin, NULL);
-    gets(nome); //Conta a ser excluÌda
+    gets(nome); //Conta a ser exclu√≠da
     while(fread(&Cpy, sizeof(atual), 1, arq_inclusao) == 1) { //Percorre o arquivo
-        if(strcmp(nome, Cpy.conta) == 0) { //Compara conta fornecida com a conta que est· no arquivo
+        if(strcmp(nome, Cpy.conta) == 0) { //Compara conta fornecida com a conta que est√° no arquivo
             delay(2);
             gotoxy(38, 16);
             printf("%c", 179);
@@ -1320,7 +1320,7 @@ void exclusao() {
                 printf("Senha: ");
                 do{
                     c = getch();
-                    if(isprint(c)) {    //Analisa se o valor da vari·vel c È imprimivel
+                    if(isprint(c)) {    //Analisa se o valor da vari√°vel c √© imprimivel
                         sen[i] = c;
                         i++;
                         printf("*");
@@ -1333,9 +1333,9 @@ void exclusao() {
                 }while(c != 13);
                 sen[i] = '\0';
                 setbuf(stdin, NULL);
-                if(strcmp(sen, Cpy.senha) == 0) { //Faz comparaÁ„o de senha
+                if(strcmp(sen, Cpy.senha) == 0) { //Faz compara√ß√£o de senha
                     copia = fopen("copia_arq.txt", "ab"); //Abre arquivo copia
-                    rewind(arq_inclusao); //Volta pro inÌcio do arquivo original
+                    rewind(arq_inclusao); //Volta pro in√≠cio do arquivo original
                     while(fread(&Cpy, sizeof(atual), 1, arq_inclusao) == 1) { //Percorre o arquivo
                         if(strcmp(nome, Cpy.conta) != 0) { //Onde tiver essa conta
                             fwrite(&Cpy, sizeof(atual), 1, copia); //Escreve no arquivo tudo que for diferente dessa conta
@@ -1343,7 +1343,7 @@ void exclusao() {
                     }
                     fclose(arq_inclusao); //Fecha arquivo original
                     fclose(copia); //Fecha arquivo copia
-                    unlink(arquivo); //Ao invÈs de remove
+                    unlink(arquivo); //Ao inv√©s de remove
                     rename("copia_arq.txt", arquivo); //Renomeia
                     registro_uso = fopen(temps, "rb");
                     copy_registro = fopen("copia_reg.txt", "ab");
@@ -1364,7 +1364,7 @@ void exclusao() {
                     preenche_laterais(20, 22, 1, 43);
                     getch();
                     menu_cadastro();
-                    }else{ //Se n„o digitar senha correta
+                    }else{ //Se n√£o digitar senha correta
                         mensagem(5);
                         gotoxy(31, 18);
                         printf("Senha incorreta");
@@ -1395,7 +1395,7 @@ void exclusao() {
     }
     fclose(arq_inclusao); //Fecha arquivo original
     getch();
-} //Fim da funÁ„o exclus„o
+} //Fim da fun√ß√£o exclus√£o
 
 void alteracao() {
     atual cpy;
@@ -1478,7 +1478,7 @@ void alteracao() {
                     printf("DIGITE A SENHA PARA ALTERA%c%cO:  ", 128, 199);
                     do{
                         c = getch();
-                        if(isprint(c)) {    //Analisa se o valor da vari·vel c È imprimivel
+                        if(isprint(c)) {    //Analisa se o valor da vari√°vel c √© imprimivel
                             sen[i] = c;
                             i++;
                             printf("*");
@@ -2106,7 +2106,7 @@ void entrada_saida(){
             goto volta_conta;
         }
         while(fread(&uso, sizeof(atual), 1, arq_inclusao) == 1) { //Percorre o arquivo
-            if(strcmp(strlwr(counta), strlwr(uso.conta)) == 0) { //Compara conta fornecida com a conta que est· no arquivo
+            if(strcmp(strlwr(counta), strlwr(uso.conta)) == 0) { //Compara conta fornecida com a conta que est√° no arquivo
                 gotoxy(24, 14);
                 printf("Usu%crio: %s", 160, uso.usuario);
                 finalidade_vazia:
@@ -2858,10 +2858,10 @@ void molde2(){
 			x3++;
         }
     }
-    //TÌtulo
+    //T√≠tulo
     gotoxy(34, 9);
     printf("System Lab In");
-    //Caixa de tÌtulo
+    //Caixa de t√≠tulo
     for(i=1;i<18; i++){
         gotoxy(lc,10); //em baixo
         printf("%c",205);
